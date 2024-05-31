@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-pod
+  labels:
+    app: hello
+spec:
+  containers:
+  - name: hello-container
+    image: europe-west1-docker.pkg.dev/$PROJECT_ID/my-repo/hello:latest
+    ports:
+    - containerPort: 8080
+    env:
+    - name: PORT
+      value: "8080"
