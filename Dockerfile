@@ -1,11 +1,13 @@
 FROM python:3.12.3-slim
 
+ENV PORT 8080
+
 WORKDIR /app
 
 ADD . /app
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-EXPOSE 8080
+EXPOSE $PORT
 
-CMD ["gunicorn", "-b", "0.0.0.0:8080", "hello:app"]
+CMD exec gunicorn --bind 0.0.0.0:$PORT hello:app
