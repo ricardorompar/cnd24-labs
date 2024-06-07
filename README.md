@@ -53,6 +53,7 @@ Here's a screenshot of the dates (1st) container in action:
 ![screenshot of mc1 1st output](./img/dates.png)
 
 The 2nd container writes the date in the `html` volume and the 1st reads it and exposes it to the port 8080.
+
 ---
 
 ### 4. Deployments
@@ -88,4 +89,16 @@ hello-deployment-6dd4f6b944-bcvfq   1/1     Running             0          2m51s
 hello-deployment-6dd4f6b944-cz8f4   0/1     ContainerCreating   0          4s
 hello-deployment-6dd4f6b944-qnv7w   1/1     Running             0          2m51s
 ```
-We can see that Kubernetes will automatically create a new pod in order to guarantee the initial manifest.
+We can see that Kubernetes will automatically create a new pod in order to guarantee the initial manifest. That's why we see the status `ContainerCreating`
+
+After increasing the amount of replicas from 3 to 5 I saw that the deployment kept the previous pods and just added the 2 new ones.
+
+### 5. Services
+So far I could only access the pods individually. Let's fix that with a service (load balancer) that exposes all my pods.
+
+After creating the manifest we must again, apply (easy peasy):
+```bash
+kubectl apply -f hello-service.yaml
+```
+
+With the `selector` I'm telling the service to route traffic to my existing deployment.
