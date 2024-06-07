@@ -10,6 +10,7 @@ Created with gcloud command:
 ```bash
 gcloud container clusters create my-cluster --num-nodes=3 --region=europe-west1
 ```
+---
 
 ### 2. Creating a Pod:
 2.1. First create a repo for my image:
@@ -36,6 +37,7 @@ Access the pod:
 ```bash
 kubectl port-forward hello-pod 8080:8080
 ```
+---
 
 ### 3. Containers vs Pods:
 In this part we created a pod with 2 containers (1st and 2nd).
@@ -47,5 +49,10 @@ Nice summary
 
 In this exercise we also applied the pod in a different "test" namespace.
 
-Here's a screenshot of the dates (2nd) container in action:
-![screenshot of mc1 2nd output](./img/dates.png)
+Here's a screenshot of the dates (1st) container in action:
+![screenshot of mc1 1st output](./img/dates.png)
+
+The 2nd container writes the date in the `html` volume and the 1st reads it and exposes it to the port 8080.
+---
+
+### 4. Deployments
