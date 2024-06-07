@@ -56,3 +56,36 @@ The 2nd container writes the date in the `html` volume and the 1st reads it and 
 ---
 
 ### 4. Deployments
+After creating the deployment manifest template we have to substitute the PROJECT_ID again:
+```bash
+envsubst < hello-deployment.yaml.template > hello-deployment.yaml
+```
+This will create the actual deployment manifest.
+
+Now apply:
+```bash
+kubectl apply -f hello-deployment.yaml
+```
+
+Checking the status of the deployment, we can see the pods we just created with:
+```bash
+kubectl get pods -l app=hello
+```
+
+Output:
+```console
+NAME                                READY   STATUS    RESTARTS   AGE
+hello-deployment-6dd4f6b944-5cl49   1/1     Running   0          42s
+hello-deployment-6dd4f6b944-bcvfq   1/1     Running   0          41s
+hello-deployment-6dd4f6b944-qnv7w   1/1     Running   0          41s
+```
+With this we can see that our deployment has the desired number of replicas (3) we asked for.
+
+If I check my pods right after I deleted the first one I have this output:
+```console
+NAME                                READY   STATUS              RESTARTS   AGE
+hello-deployment-6dd4f6b944-bcvfq   1/1     Running             0          2m51s
+hello-deployment-6dd4f6b944-cz8f4   0/1     ContainerCreating   0          4s
+hello-deployment-6dd4f6b944-qnv7w   1/1     Running             0          2m51s
+```
+We can see that Kubernetes will automatically create a new pod in order to guarantee the initial manifest.

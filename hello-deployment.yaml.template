@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-deployment
+  labels:
+    app: hello
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hello
+  template:
+    metadata:
+      labels:
+        app: hello
+    spec:
+      containers:
+      - name: hello-container
+        image: europe-west1-docker.pkg.dev/$PROJECT_ID/my-repo/hello:v1
+        ports:
+        - containerPort: 8080
+        env:
+        - name: PORT
+          value: "8080"
