@@ -7,7 +7,7 @@ metadata:
 spec:
   containers:
   - name: hello-container
-    image: europe-west1-docker.pkg.dev/qwiklabs-gcp-04-e468c44b6496/my-repo/hello:latest
+    image: europe-west1-docker.pkg.dev/qwiklabs-gcp-00-60dbb8746744/my-repo/hello:latest
     ports:
     - containerPort: 8080
     env:
