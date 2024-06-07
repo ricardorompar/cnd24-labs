@@ -48,4 +48,4 @@ Nice summary
 In this exercise we also applied the pod in a different "test" namespace.
 
 Here's a screenshot of the dates (2nd) container in action:
-![screenshot of mc1 2nd output](cnd24-labs/img/dates.png)
+![screenshot of mc1 2nd output](./img/dates.png)
